@@ -2,9 +2,6 @@ package com.company;
 
 import java.util.Scanner;
 
-//public class Game {
-//should be top level before main
-//import java.util.Scanner;
 
 public class Game implements gameStart {
 
@@ -12,258 +9,87 @@ public class Game implements gameStart {
     Scanner enterScanner = new Scanner(System.in);
 
     public void startGame() {
-        playerSetUp();
-        townGate();
-        crossRoad();
-        north();
-        east();
-        west();
-        fight();
-        attack();
-        dead();
-        win();
-        ending();
+        sephoraEntrance();
+
 
     }
 
-
-    int playerHP;
-    String playerName;
-    String playerWeapon;
     int choice;
-    int monsterHP;
+    int coupon;
+    boolean kickedout = false;
 
-    int silverRing;
-
-    public void playerSetUp() {
-
-
-        playerHP = 10;
-        monsterHP = 15;
-
-        playerWeapon = "Fireball";
-        System.out.println("WELCOME TO THIS XXX WORLD");
-        System.out.println("Please enter your name:");
-//        System.out.println("Your Weapon Of Chose: " + playerWeapon);
+    private void sephoraEntrance() {
 
 
-        playerName = myScanner.nextLine();
-//        playerWeapon = myScanner.nextLine();
+        System.out.println("Welcome to Saphora, where you can make your self unimaginably beautiful with what you chose \n" +
+                "there is a catch, you must find the unlimited coupon that can get you everything free!");
 
+        while (!kickedout) {
 
-        System.out.println("Hello " + playerName + ", let's start the game!");
+                System.out.println("You are the front store and need to find the coupon, where do you look \n" +
+                        "1-behind the counter\n" +
+                        "2-by the lip gloss stand \n" +
+                        "3-by the front entrance \n" +
+                        "4-by the grumpy customer");
 
+                choice = myScanner.nextInt();
 
+                if (choice == 1) {
+                    if (coupon == 1) {
+                        break;
+                    } else {
+                        System.out.println("You check behind the counter and are asked by the manager what it is exactly that you are doing? \n" +
+                                "You look up cluelessly and are escorted out, THE END");
+                        kickedout = true;
+                        enterScanner.nextLine();
+                    }
 
-    }
+                } else if (choice == 2) {
+                    System.out.println("You go look by the lip gloss stand and suddenly attacked by and angry customer that just got left by \n" +
+                            "her boyfriend, damm life sucks like that... but you tell the manager and she is escorted out");
+                    enterScanner.nextLine();
+                } else if (choice == 3) {
+                    System.out.println("You check the front entrance and as you look around the bouncer asks if you lost something. \n" +
+                            "You say, im looking for a coupon that will get me everything free. He lookd at you sideways and says 'Free?! \n" +
+                            "they still pay me 7.25 and they're give you free stuff, nah man i want that coupon!. He frames you for stealing \n" +
+                            "and walks you out! YOU LOST!");
+                    kickedout = true;
+                } else if (choice == 4) {
+                    System.out.println("You see the grumpy customer and ask her what is going on. She tells you that he boyfriend just broke \n" +
+                            "up with her and that her life is in shambles! \n" +
+                            "\n You have a choice \n" +
+                            "\n1-tell her that she is amazing and that its his lose \n" +
+                            "\n2-tell her it seems that shes always angry and that's proabably why he left her");
 
-    private void townGate() {
+                    choice = myScanner.nextInt();
+                    switch (choice) {
+                        case 1:
+                            System.out.println("She looks up at and and starts crying her eyes out and says 'Thank you so much \n" +
+                                    "for your kind words, i was going to use this coupon to get really pretty and go on a date \n" +
+                                    "with his best friend but i want to give it you insted\n" +
+                                    "\n" +
+                                    "\nYou have the unlimited coupon and have gone on a shopping spree! THE END");
+                            kickedout = true;
 
-        System.out.println("\n------------------------------------------------------------------\n");
-        System.out.println("You are at the gate of the town.");
-        System.out.println("A guard is standing in front of you.");
-        System.out.println("");
-        System.out.println("What do you want to do?");
-        System.out.println("");
-        System.out.println("1: Talk to the guard");
-        System.out.println("2: Attack the guard");
-        System.out.println("3: Leave");
-        System.out.println("\n------------------------------------------------------------------\n");
+                            break;
+                        case 2:
+                            System.out.println("You tell her that she is always angry and for some reason that infuriates her. \n" +
+                                    "she goes to the manager and complains that you are harrasing her, but before \n" +
+                                    " she slaps you a whole bunch of times and the bouncer comes \n" +
+                                    "and escorts you out! YOU LOST");
+                            for (int i = 0; i <3 ; i++) {
+                                System.out.println("SLAP");
+                            }
+                            kickedout = true;
+                            break;
+                    }
 
-        choice = myScanner.nextInt();
-
-        if (choice == 1) {
-            if (silverRing == 1) {
-                ending();
-            } else {
-                System.out.println("Guard: Hello there, stranger. So your name is " + playerName + "? \nSorry but we cannot let stranger enter our town.");
-                enterScanner.nextLine();
-                townGate();
-            }
-
-        } else if (choice == 2) {
-            playerHP = playerHP - 1;
-            System.out.println("Guard: Hey don't be stupid.\n\nThe guard hit you so hard and you gave up.\n(You receive 1 damage)\n");
-            System.out.println("Your HP: " + playerHP);
-            enterScanner.nextLine();
-            townGate();
-        } else if (choice == 3) {
-            crossRoad();
-        } else {
-            townGate();
+                }
         }
     }
 
-    private void crossRoad() {
-        System.out.println("\n------------------------------------------------------------------\n");
-        System.out.println("You are at a crossroad. If you go south, you will go back to the town.\n\n");
-        System.out.println("1: Go north");
-        System.out.println("2: Go east");
-        System.out.println("3: Go south");
-        System.out.println("4: Go west");
-        System.out.println("\n------------------------------------------------------------------\n");
 
-        choice = myScanner.nextInt();
-
-        if (choice == 1) {
-            north();
-        } else if (choice == 2) {
-            east();
-        } else if (choice == 3) {
-            townGate();
-        } else if (choice == 4) {
-            west();
-        } else {
-            crossRoad();
-        }
-    }
-
-    private void north() {
-        System.out.println("\n------------------------------------------------------------------\n");
-        System.out.println("There is a river. You drink the water and rest at the riverside.");
-        System.out.println("Your HP is recovered.");
-        playerHP = playerHP + 1;
-        System.out.println("Your HP: " + playerHP);
-        System.out.println("\n\n1: Go back to the crossroad");
-        System.out.println("\n------------------------------------------------------------------\n");
-
-        choice = myScanner.nextInt();
-
-        if (choice == 1) {
-            crossRoad();
-        } else {
-            north();
-        }
-    }
-
-    private void east() {
-        System.out.println("\n------------------------------------------------------------------\n");
-        System.out.println("You walked into a forest and found a Long Sword!");
-        playerWeapon = "Long Sword";
-        System.out.println("Your Weapon: " + playerWeapon);
-        System.out.println("\n\n1: Go back to the crossroad");
-        System.out.println("\n------------------------------------------------------------------\n");
-
-        choice = myScanner.nextInt();
-
-        if (choice == 1) {
-            crossRoad();
-        } else {
-            east();
-        }
-    }
-
-    private void west() {
-        System.out.println("\n------------------------------------------------------------------\n");
-        System.out.println("You encounter a goblin!\n");
-        System.out.println("1: Fight");
-        System.out.println("2: Run");
-        System.out.println("\n------------------------------------------------------------------\n");
-
-        choice = myScanner.nextInt();
-
-        if (choice == 1) {
-            fight();
-        } else if (choice == 2) {
-            crossRoad();
-        } else {
-            west();
-        }
-    }
-
-    private void fight() {
-        System.out.println("\n------------------------------------------------------------------\n");
-        System.out.println("Your HP: " + playerHP);
-        System.out.println("Monster HP: " + monsterHP);
-        System.out.println("\n1: Attack");
-        System.out.println("2: Run");
-        System.out.println("\n------------------------------------------------------------------\n");
-
-        choice = myScanner.nextInt();
-
-        if (choice == 1) {
-            attack();
-        } else if (choice == 2) {
-            crossRoad();
-        } else {
-            fight();
-        }
-    }
-
-    private void attack() {
-        int playerDamage = 0;
-
-
-        if (playerWeapon.equals("Knife")) {
-            playerDamage = new java.util.Random().nextInt(5);
-        } else if (playerWeapon.equals("Long Sword")) {
-            playerDamage = new java.util.Random().nextInt(8);
-        }
-
-        System.out.println("You attacked the monster and gave " + playerDamage + " damage!");
-
-        monsterHP = monsterHP - playerDamage;
-
-        System.out.println("Monster HP: " + monsterHP);
-
-        if (monsterHP < 1) {
-            win();
-        } else if (monsterHP > 0) {
-            int monsterDamage = 0;
-
-            monsterDamage = new java.util.Random().nextInt(4);
-
-            System.out.println("The monster attacked you and gave " + monsterDamage + " damage!");
-
-            playerHP = playerHP - monsterDamage;
-
-            System.out.println("Player HP: " + playerHP);
-
-            if (playerHP < 1) {
-                dead();
-            } else if (playerHP > 0) {
-                fight();
-            }
-        }
-
-
-    }
-
-    private void dead() {
-        System.out.println("\n------------------------------------------------------------------\n");
-        System.out.println("You are dead!!!");
-        System.out.println("\n\nGAME OVER");
-        System.out.println("\n------------------------------------------------------------------\n");
-
-    }
-
-    private void win() {
-        System.out.println("\n------------------------------------------------------------------\n");
-        System.out.println("You killed the monster!");
-        System.out.println("The monster dropped a ring!");
-        System.out.println("You obtaind a silver ring!\n\n");
-        System.out.println("1: Go east");
-        System.out.println("\n------------------------------------------------------------------\n");
-
-        silverRing = 1;
-
-        choice = myScanner.nextInt();
-        if (choice == 1) {
-            crossRoad();
-        } else {
-            win();
-        }
-
-    }
-
-    private void ending() {
-        System.out.println("\n------------------------------------------------------------------\n");
-        System.out.println("Guard: Oh you killed that goblin!?? Great!");
-        System.out.println("Guard: It seems you are a trustworthy guy. Welcome to our town!");
-        System.out.println("\n\n           THE END                    ");
-        System.out.println("\n------------------------------------------------------------------\n");
-    }
 }
 
-//}
+
 
